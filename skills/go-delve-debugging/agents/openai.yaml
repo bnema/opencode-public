@@ -1,0 +1,4 @@
+interface:
+  display_name: "Go Delve Debugging"
+  short_description: "Debug Go tests and binaries with Delve"
+  default_prompt: "Use $go-delve-debugging to debug this Go program with Delve from the terminal."
