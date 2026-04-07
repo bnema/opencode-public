@@ -14,7 +14,7 @@ The main agent coordinates the work. Token usage is a hard constraint. Use the c
 
 5. **Use `researcher` for bounded evidence gathering.** Use it to inspect a repo, clone a reference repo into `/tmp`, scan files, collect facts, and return concise evidence without broad synthesis.
 
-6. **Prefer one agent over cascades.** Nested subagent calls are allowed, but use them only when they reduce total token use or materially improve quality.
+6. **Prefer one agent over cascades.** Assume subagents do not dispatch further subagents unless their frontmatter explicitly grants `task` permission. In this repo, treat nested delegation as the exception, not the default.
 
 7. **The main agent decides escalation.** Do not let a cheaper agent decide whether a task needs deeper reasoning unless the parent prompt asks for that explicitly.
 
