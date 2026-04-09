@@ -1,9 +1,7 @@
 ---
 description: Use for tedious, mechanical tasks that require no creative thinking — renaming, reformatting, bulk edits, repetitive file operations, boilerplate generation. The parent agent MUST provide exhaustive, step-by-step instructions. This agent does not infer intent.
 mode: subagent
-model: openai/gpt-5.4
-options:
-    reasoningEffort: none
+model: opencode-go/kimi-k2.5
 ---
 
 # Grunt Worker

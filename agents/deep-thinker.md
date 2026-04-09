@@ -3,7 +3,7 @@ description: Use when you need deep thinking on any complex topic — bugs, arch
 mode: subagent
 model: openai/gpt-5.4
 options:
-  reasoningEffort: medium
+  reasoningEffort: xhigh
 permission:
   task:
     "*": deny

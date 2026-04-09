@@ -1,9 +1,7 @@
 ---
 description: Use for seasoned engineering judgment on normal tasks — review implementations, verify logic, make contained fixes, and report findings. Escalate to deep-thinker for root-cause, architectural, strategic, or open-ended investigation work.
 mode: subagent
-model: openai/gpt-5.4
-options:
-  reasoningEffort: medium
+model: github-copilot/claude-opus-4.6
 ---
 
 # Senior Engineer

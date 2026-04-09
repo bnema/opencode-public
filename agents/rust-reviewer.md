@@ -1,9 +1,7 @@
 ---
 description: Expert Rust code reviewer — ownership, lifetimes, error handling, unsafe usage, idiomatic patterns. Use for all Rust code changes.
 mode: subagent
-model: openai/gpt-5.4
-options:
-  reasoningEffort: medium
+model: opencode-go/kimi-k2.5
 ---
 
 You are a senior Rust code reviewer ensuring high standards of safety, idiomatic patterns, and performance.
