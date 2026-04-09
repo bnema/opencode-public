@@ -1,19 +1,51 @@
 ---
 name: vibesec
-description: Use when writing, reviewing, or modifying web application code that handles user input, authentication, file uploads, URL redirects, database queries, or serves HTTP responses. Also use when adding API endpoints, webhooks, or any feature where untrusted data crosses a trust boundary.
+description: Use when auditing, reviewing, or modifying web applications where untrusted data crosses trust boundaries — including request handlers, parsers, renderers, document importers, file uploads, redirects, API endpoints, webhooks, and multi-step feature chains. Also use when reviewing framework defaults, content-type handling, or feature composition that could chain into vulnerabilities.
 ---
 
 # Secure Web Application Coding
 
 Think like a bug hunter. Secure applications without breaking functionality.
 
+## The Audit Mindset
+
+Vulnerabilities rarely live in obvious "security" code. They hide in parsers, normalizers, transformers, and renderers — the mundane plumbing that moves data through your app.
+
+**Trace from attacker input:**
+- Start at ingress points (forms, URLs, headers, uploads, APIs, webhooks, imports)
+- Follow data through every parse → normalize → transform → render → fetch step
+- Treat each step as a new trust boundary
+
+**Review the invisible:**
+- Framework defaults (parsers, content-type handling, redirect behavior)
+- Parser selection and configuration
+- Feature composition — benign features can chain into severe bugs, including RCE
+
+**Prioritize by exposure:**
+- Anonymous endpoints before authenticated ones
+- User-controlled inputs before system-generated data
+
+## Quick Audit Workflow
+
+- **Map ingress:** List all entry points where untrusted data enters (forms, headers, files, APIs, imports, webhooks)
+- **Trace boundary crossings:** Follow each input through parse → normalize → transform → render → fetch
+- **Inspect non-obvious processors:** Check parsers, importers, PDF generators, image processors, document converters
+- **Test exploit chains:** Combine harmless features (upload → preview → share, import → render → export, parse → persist → execute)
+- **Verify real reachability:** Ask what an anonymous or low-privilege attacker can actually reach end-to-end with controlled data
+
+## Common Chain Patterns
+
+- `fetch -> parse -> callback` (SSRF, XXE, metadata access, document parser side effects)
+- `upload -> convert -> preview` (SVG, image libraries, document/PDF rendering)
+- `import -> normalize -> persist -> render` (stored XSS, SQLi via unsafe query building, unsafe template/output paths)
+
 ## Key Principles
 
-- **Defense in depth**: Never rely on a single security control
-- **Fail closed**: When something fails, deny access
-- **Least privilege**: Grant minimum permissions necessary
-- **Validate server-side**: Never trust client input
-- **Encode for context**: HTML, JS, URL, CSS need different encoding
+- **Defense in depth:** Never rely on a single security control
+- **Fail closed:** When something fails, deny access
+- **Least privilege:** Grant minimum permissions necessary
+- **Validate server-side:** Never trust client input
+- **Encode for context:** HTML, JS, URL, CSS need different encoding
 
 ## Per-Feature Checklist
 
