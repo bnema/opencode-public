@@ -37,13 +37,21 @@
   },
   "agent": {
     "general": {
-      "model": "openai/gpt-5.4-mini"
+      "model": "openai/gpt-5.4"
     },
     "plan": {
       "model": "openai/gpt-5.4"
     },
     "explore": {
       "model": "openai/gpt-5.4-mini"
+    }
+  },
+  "command": {
+    "finalize": {
+      "description": "Finalize the current work",
+      "template": "Finalize the ongoing work. First inspect the git branch state. If the current branch is a working branch rather than `main`, use `main` as the comparison target anywhere the review/finalization flow needs a base branch or diff target. Then use these skills as part of the finalization flow: `hexarch`, `simplify`, and `coderabbit`. After those skills identify required follow-up work, execute that work rather than stopping at review output. Keep going until the finalization pass is complete, then summarize findings, changes made, remaining risks, and any next steps.",
+      "agent": "general",
+      "model": "openai/gpt-5.4"
     }
   },
   "plugin": [
