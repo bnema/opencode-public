@@ -2,6 +2,12 @@
 description: Finalize an in-progress branch from an exact parent-provided checkout. Use only when explicitly invoked.
 mode: subagent
 model: openai/gpt-5.4
+permission:
+  task:
+    "*": deny
+    general: allow
+    grunt-worker: allow
+    senior-engineer: allow
 ---
 
 # Finalizer
