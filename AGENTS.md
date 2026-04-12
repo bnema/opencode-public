@@ -45,9 +45,11 @@ If you are about to implement in the main agent or send implementation straight 
 
 11. **Delegate design work to the creative designer.** UI/UX direction, interface layout, visual identity, and component design go to `creative-designer`. Do not force UI decisions into the main agent; pass the overall goal and product or technical constraints.
 
-12. Prepend your git commands with `GIT_EDITOR=true`.
+12. **Use `finalizer` when implementation appears complete and the branch is being prepared for merge.** Invoke it on demand after the parent agent can provide the exact checkout path, repo root, current branch, and base branch. Prefer it over ad hoc final review flows, especially for `.worktrees/...` checkouts.
 
-13. **Do not** store specs, plans, issues in the repo but in `$OBSIDIAN_PROJECTS_PATH/{projectName}/...`.
+13. Prepend your git commands with `GIT_EDITOR=true`.
+
+14. **Do not** store specs, plans, issues in the repo but in `$OBSIDIAN_PROJECTS_PATH/{projectName}/...`.
 
 ## Decision Checklist
 
@@ -105,6 +107,7 @@ Do not do these:
 | `senior-engineer` | Seasoned engineering judgment: ambiguous or high-judgment work, debugging, review, logic verification, tradeoff decisions, and clarifying the right approach before handoff. |
 | `deep-thinker` | High-cost deep reasoning for unclear root-cause work, architecture decisions, refactoring plans, and technology choices. |
 | `creative-designer` | UI/UX design thinking, interface design, and visual direction. |
+| `finalizer` | On-demand finalization pass for work that appears complete and ready to merge. Requires the parent to pass the exact checkout path, repo root, current branch, and base branch. |
 | `go-reviewer` | Go code review: idiomatic patterns, concurrency safety, error handling, security. |
 | `rust-reviewer` | Rust code review: ownership, lifetimes, unsafe usage, error handling, security. |
 | `typescript-reviewer` | TypeScript/JS code review: type safety, async correctness, Node.js security. |
